@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path')
 const express = require('express')
 let store = require('./db/db.json');
+const { Router } = require('express');
 
 const app = express()
 const PORT = process.env.PORT || 3000;
@@ -25,25 +26,11 @@ app.post('/api/notes', (req, res) =>{
     res.json(store);
 })
 
-function deleteNote(id, notesArray) {
-    for (let i = 0; i < notesArray.length; i++) {
-        let note = notesArray[i];
-
-        if (note.id == id) {
-            notesArray.splice(i, 1);
-            fs.writeFileSync(
-                path.join(__dirname, './db/db.json'),
-                JSON.stringify(notesArray, null, 2)
-            );
-
-            break;
-        }
-    }
-}
-
-app.delete('/api/notes/:id', (req, res) => {
-    deleteNote(req.params.id, store);
-    res.json(true);
+app.delete('/notes/:id', (req, res) => {
+    storeData
+    .removeNote(req.params.id)
+    .then(()=> res.jason({ ok: true}))
+    .catch((err) => res.status(500).json(err));
 });
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
