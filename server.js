@@ -8,6 +8,7 @@ const { Router } = require('express');
 const app = express()
 const PORT = process.env.PORT || 3000;
 
+//********************* */
 const findById = (id, notesArray) => {
     const result = notesArray.filter(note => note.id === id)[0];
 
@@ -24,8 +25,10 @@ module.exports = {
     findById,
     findByIdAndDelete
 }
+//********************* */
 
-//use
+
+//middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
@@ -55,7 +58,7 @@ app.post('/api/notes', (req, res) =>{
 })
 
 //delete note
-app.delete('/api/notes.:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
     const { id } = req.params;
     const result = findByIdAndDelete(id, store);
     res.sendFile(path.join(__dirname, './public/notes.html'));
