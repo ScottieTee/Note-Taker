@@ -16,7 +16,7 @@ create an application called Note Taker that can be used to write and save notes
 npm i
 
 ## Usage
-To use the Note Taker you will follow these instructions; homework
+To be used to take notes. Technologies used are node, js, css, and express.
 
 ## License
 MIT
@@ -30,3 +30,5 @@ If you have questions regarding this README, please reach out to me via GitHub o
 Email: sscotthompson@gmail.com
 
 https://mighty-gorge-13486.herokuapp.com/
+
+![Screenshot](./public/assets/notetaker.png)
